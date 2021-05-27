@@ -14,6 +14,7 @@ jobs:
       - name: Set tag var
         id: vars
         run: |
+          git switch -
           echo ::set-output name=current_tag::$(git describe --tags --abbrev=0 | cut -d. -f1)
           echo ::set-output name=previous_hash::$(git log -1 --format='%H' --skip 1)
           echo ${{ steps.vars.outputs.previous_hash }}
