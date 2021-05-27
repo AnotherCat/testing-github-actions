@@ -17,7 +17,7 @@ jobs:
           echo ::set-output name=current_tag::$(git describe --tags --abbrev=0 | cut -d. -f1)
           echo ::set-output name=previous_hash::$(git log -1 --format='%H' --skip 1)
           echo ${{ steps.vars.outputs.previous_hash }}
-          echo ::set-output name=previous_tag::$(git log -1 --format='%H' --skip 1 | git describe --tags --abbrev=0 | cut -d. -f1)
+          echo ::set-output name=previous_tag::$(git describe --tags --abbrev=0 $(git log -1 --format='%H' --skip 1) | cut -d. -f1)
       - name: Print vars
         run: |
           echo ${{ steps.vars.outputs.current_tag }}
