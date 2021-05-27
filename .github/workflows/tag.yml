@@ -15,7 +15,7 @@ jobs:
         id: vars
         run: |
           echo ::set-output name=current_tag::$(git describe --tags --abbrev=0 | cut -d. -f1)
-          echo "PREVIOUS_HASH = $(git show HEAD --format="%P" | cut -d$'\n' -f1)" >> $GITHUB_ENV
+          echo "PREVIOUS_HASH = $(git show HEAD --format="%P")" >> $GITHUB_ENV
           echo ${{ env.PREVIOUS_HASH }}
           echo ::set-output name=previous_tag::$(git describe --tags --abbrev=0 ${{ env.PREVIOUS_HASH }} | cut -d. -f1)
       - name: Print vars
