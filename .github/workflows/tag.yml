@@ -17,13 +17,13 @@ jobs:
         id: vars
         run: |
           git fetch -a
-          echo ::set-output name=current_tag::$(git tag --sort "-committerdate" | cut -d$'\n' -f1 | cut -d. -f1)
-          echo ::set-output name=previous_tag::$(git tag --sort "-committerdate" | cut -d$'\n' -f2 | cut -d. -f1)
+          echo ::set-output name=current_major::$(git tag --sort "-committerdate" | cut -d$'\n' -f1 | cut -d. -f1)
+          echo ::set-output name=previous_major::$(git tag --sort "-committerdate" | cut -d$'\n' -f2 | cut -d. -f1)
       - name: Print vars
         run: |
-          echo ${{ steps.vars.outputs.current_tag }}
-          echo ${{ steps.vars.outputs.previous_tag }}
+          echo ${{ steps.vars.outputs.current_major }}
+          echo ${{ steps.vars.outputs.previous_major }}
       
       - name: Test this all
-        if: ${{ steps.vars.outputs.current_tag == steps.vars.outputs.previous_tag }}
+        if: ${{ steps.vars.outputs.current_major == steps.vars.outputs.previous_major }}
         run: echo "YESS"
