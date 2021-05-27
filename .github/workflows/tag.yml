@@ -10,10 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch: 0
         
       - name: Set tag var
         id: vars
         run: |
+          git fetch -a
           echo ::set-output name=current_tag::$(git tag --sort "-committerdate" | cut -d$'\n' -f1)
           echo ::set-output name=previous_tag::$(git tag --sort "-committerdate" | cut -d$'\n' -f2)
       - name: Print vars
