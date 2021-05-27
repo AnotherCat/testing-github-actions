@@ -1,0 +1,15 @@
+name: Tag
+
+on:
+  push:
+    tags:
+      "v*"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Helllo
+        run: echo "HEELLO"
