@@ -42,7 +42,7 @@ jobs:
             git pull
             git checkout $GITHUB_REF
             pipenv install
-            pm2 restart $PROCESS_ID
+            pm2 restart $PROCESS_ID -s
           
           
 
