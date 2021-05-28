@@ -26,19 +26,20 @@ jobs:
         env:
           PROCESS_PATH: ${{ secrets.CD_PROCESS_PATH }}
           PROCESS_ID: ${{ secrets.CD_PROCESS_ID }}
+          GITHUB_REF: ${{ env.GITHUB_REF }}
         with:
           host: ${{ secrets.CD_HOST }}
           username: ${{ secrets.CD_USERNAME }}
           key: ${{ secrets.CD_SECRET_KEY }}
           script_stop: true
-          envs: PROCESS_PATH, PROCESS_ID
+          envs: PROCESS_PATH, PROCESS_ID, GITHUB_REF
           script: |
             source ~/.profile
             source ~/.nvm/nvm.sh
             cd $PROCESS_PATH
             echo $PROCESS_PATH
             pip install --user -U pipenv
-            git fetch --tags
+            git pull
             git checkout $GITHUB_REF
             pipenv install
             pm2 restart $PROCESS_ID
