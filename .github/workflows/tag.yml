@@ -38,13 +38,14 @@ jobs:
           envs: PROCESS_PATH, PROCESS_ID
           script: |
             source ~/.profile
+            source source ~/.nvm/nvm.sh
             cd $PROCESS_PATH
             echo $PROCESS_PATH
             pip install --user -U pipenv
             git fetch --tags
             git checkout $GITHUB_REF
             python3 -m pipenv install
-            /home/admin/.nvm/versions/node/v14.15.4/bin/pm2 restart $PROCESS_ID
+            pm2 restart $PROCESS_ID
           
           
 
