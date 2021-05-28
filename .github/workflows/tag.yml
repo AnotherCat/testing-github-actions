@@ -37,7 +37,6 @@ jobs:
             source ~/.profile
             source ~/.nvm/nvm.sh
             cd $PROCESS_PATH
-            echo $PROCESS_PATH
             pip install --user -U pipenv
             git pull origin main --tags
             git checkout $GITHUB_REF
