@@ -44,7 +44,7 @@ jobs:
             pip install --user -U pipenv
             git fetch --tags
             git checkout $GITHUB_REF
-            python3 -m pipenv install
+            pipenv install
             pm2 restart $PROCESS_ID
           
           
