@@ -37,7 +37,7 @@ jobs:
           script_stop: true
           script: |
             cd $PROCESS_PATH
-            touch hello.md
+            echo $PROCESS_PATH
             pip install --user -U pipenv
             git fetch --tags
             git checkout $GITHUB_REF
