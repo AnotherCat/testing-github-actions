@@ -37,6 +37,7 @@ jobs:
           script_stop: true
           script: |
             cd $PROCESS_PATH
+            pwd
             pip install --user -U pipenv
             git fetch --tags
             git checkout $GITHUB_REF
