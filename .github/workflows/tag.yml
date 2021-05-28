@@ -35,7 +35,7 @@ jobs:
           username: ${{ secrets.CD_USERNAME }}
           key: ${{ secrets.CD_SECRET_KEY }}
           script_stop: true
-          script:
+          script: |
             cd $PROCESS_PATH
             pip install --user -U pipenv
             git fetch --tags
