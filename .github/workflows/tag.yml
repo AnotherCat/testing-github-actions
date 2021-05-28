@@ -38,7 +38,7 @@ jobs:
           envs: PROCESS_PATH, PROCESS_ID
           script: |
             source ~/.profile
-            source source ~/.nvm/nvm.sh
+            source ~/.nvm/nvm.sh
             cd $PROCESS_PATH
             echo $PROCESS_PATH
             pip install --user -U pipenv
