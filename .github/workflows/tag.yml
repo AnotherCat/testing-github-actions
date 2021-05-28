@@ -1,4 +1,4 @@
-name: Tag
+name: Deploy on tag
 
 on:
   push:
@@ -6,25 +6,21 @@ on:
       "v*"
 
 jobs:
-  lint:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
         
-      - name: Set tag var
+      - name: Get major of current tag and previous tag
         id: vars
         run: |
           git fetch -a
           echo ::set-output name=current_major::$(git tag --sort "-committerdate" | cut -d$'\n' -f1 | cut -d. -f1)
           echo ::set-output name=previous_major::$(git tag --sort "-committerdate" | cut -d$'\n' -f2 | cut -d. -f1)
-      - name: Print vars
-        run: |
-          echo ${{ steps.vars.outputs.current_major }}
-          echo ${{ steps.vars.outputs.previous_major }}
       
-      - name: SSH Remote Commands
+      - name: SSH Commands
         if: ${{ steps.vars.outputs.current_major == steps.vars.outputs.previous_major }}
         uses: appleboy/ssh-action@v0.1.4
         env:
