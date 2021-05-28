@@ -44,7 +44,7 @@ jobs:
             git fetch --tags
             git checkout $GITHUB_REF
             python3 -m pipenv install
-            pm2 restart $PROCESS_ID
+            /home/admin/.nvm/versions/node/v14.15.4/bin/pm2 restart $PROCESS_ID
           
           
 
