@@ -37,6 +37,7 @@ jobs:
           script_stop: true
           envs: PROCESS_PATH, PROCESS_ID
           script: |
+            source ~/.bash_profile
             cd $PROCESS_PATH
             echo $PROCESS_PATH
             pip install --user -U pipenv
