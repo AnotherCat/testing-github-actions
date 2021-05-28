@@ -35,6 +35,7 @@ jobs:
           username: ${{ secrets.CD_USERNAME }}
           key: ${{ secrets.CD_SECRET_KEY }}
           script_stop: true
+          envs: PROCESS_PATH, PROCESS_ID
           script: |
             cd $PROCESS_PATH
             echo $PROCESS_PATH
