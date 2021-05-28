@@ -25,6 +25,7 @@ jobs:
           echo ${{ steps.vars.outputs.previous_major }}
       
       - name: SSH Remote Commands
+        if: ${{ steps.vars.outputs.current_major == steps.vars.outputs.previous_major }}
         uses: appleboy/ssh-action@v0.1.4
         env:
           PROCESS_PATH: ${{ secrets.CD_PROCESS_PATH }}
