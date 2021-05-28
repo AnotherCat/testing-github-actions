@@ -24,6 +24,23 @@ jobs:
           echo ${{ steps.vars.outputs.current_major }}
           echo ${{ steps.vars.outputs.previous_major }}
       
-      - name: Test this all
-        if: ${{ steps.vars.outputs.current_major == steps.vars.outputs.previous_major }}
-        run: echo "YESS"
+      - name: SSH Remote Commands
+        uses: appleboy/ssh-action@v0.1.4
+        env:
+          PROCESS_PATH: ${{ secrets.CD_PROCESS_PATH }}
+          PROCESS_ID: ${{ secrets.CD_PROCESS_ID }}
+        with:
+          host: ${{ secrets.CD_HOST }}
+          username: ${{ secrets.CD_USERNAME }}
+          key: ${{ secrets.CD_SECRET_KEY }}
+          script_stop: true
+          script:
+            cd $PROCESS_PATH
+            pip install --user -U pipenv
+            git fetch --tags
+            git checkout $GITHUB_REF
+            pipenv install
+            pm2 restart $PROCESS_ID
+          
+          
+
